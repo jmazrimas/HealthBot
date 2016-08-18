@@ -18,7 +18,7 @@ require 'active_record'
 require 'logger'
 require 'faker'
 require 'classifier'
-
+require 'geocoder'
 require 'csv'
 
 require 'twilio-ruby'

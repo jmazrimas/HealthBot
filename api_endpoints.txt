@@ -1,29 +1,26 @@
-Mental health
+mental_health
 https://data.cityofchicago.org/resource/t57k-za2y.json
 
-STI
+sti
 https://data.cityofchicago.org/resource/t57k-za2y.json
 
-WIC clinics
+wic_clinics
 https://data.cityofchicago.org/resource/t57k-za2y.json
 
-Substance Abuse
+substance_abuse
 https://data.cityofchicago.org/resource/232q-2cqr.json
 
-Public Health Primary Care
+primary_care
 https://data.cityofchicago.org/resource/f8ze-n3rx.json
 
-Senior Centers
+senior_centers
 https://data.cityofchicago.org/resource/r9g3-4ubb.json
 
-Condom Distribution
+condom_distribution
 https://data.cityofchicago.org/resource/dffv-gz9p.json
 
-Warming Centers
+warming_centers
 https://data.cityofchicago.org/resource/6yaz-6v2j.json
 
-Cooling Centers
+cooling_centers
 https://data.cityofchicago.org/resource/r23p-6uic.json
-
-2013 Flu Shot locations
-https://data.cityofchicago.org/resource/qesy-7xtr.json

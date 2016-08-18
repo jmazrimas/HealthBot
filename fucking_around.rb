@@ -1,9 +1,10 @@
 require 'geocoder'
 
-array_thing = Geocoder.search("9829 Lake Ave Cleveland")
+array_thing = Geocoder.search("Wicker Park")
 # returns a google result array; each object has these methods available: http://www.rubydoc.info/github/alexreisner/geocoder/master/Geocoder/Result/Google
 
 array_thing.each do |stuff|
+  p stuff
   puts stuff.coordinates
   puts stuff.country
   puts stuff.formatted_address
