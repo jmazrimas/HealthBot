@@ -20,7 +20,7 @@ gem 'twilio-ruby', '~> 4.11.1'
 gem 'faker'
 
 gem 'nbayes'
-
+gem 'geocoder'
 gem 'classifier'
 
 group :test do

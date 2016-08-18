@@ -1,6 +1,9 @@
 class PubHealth < ActiveRecord::Base
 
-  #after greg and joe determine the category...
+  #after greg and joe determine the category of the request...
+
+  # def get_box_around_address(address)
+  # end
 
   def self.import(category, box_around_target_address)
     #iterate through the text file, for each API, import
