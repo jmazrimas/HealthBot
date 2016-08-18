@@ -8,5 +8,4 @@ get '/receive-sms' do
     r.Message "I'm responding to your text!"
   end
   twiml.text
-  "stuff!"
 end
