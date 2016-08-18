@@ -12,3 +12,5 @@ get '/receive-sms' do
   end
   twiml.text
 end
+
+# needs to call pub_health method, receive a string with the place and the address which it returns to the user
