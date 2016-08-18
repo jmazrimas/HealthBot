@@ -1,5 +1,7 @@
 get '/' do
 
+  p classing_bot.classify("i want to hurt myself")
+
   erb :temp
 end
 
@@ -9,8 +11,6 @@ get '/receive-sms' do
   response = classing_bot.classify(body)
 
   msg = "Were you looking for info on #{response}?"
-
-  msg += "last = #{session[:response]}" if session[:response]
 
   session[:response] = response
 
