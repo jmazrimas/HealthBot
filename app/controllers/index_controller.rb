@@ -10,10 +10,12 @@ get '/receive-sms' do
 
   session[:response] = response
 
-  p session[:response] if session[:response]
+  msg = "Were you looking for info on #{response}?"
+
+  msg += "last = #{session[:response]}" if session[:response]
 
   twiml = Twilio::TwiML::Response.new do |r|
-    r.Message "Were you looking for info on #{response}?"
+    r.Message msg
   end
   twiml.text
 end
