@@ -11,6 +11,8 @@ require 'rubygems'
 require 'uri'
 require 'pathname'
 
+require 'twilio-ruby'
+
 require 'sinatra'
 require "sinatra/reloader" if development?
 
