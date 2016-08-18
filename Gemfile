@@ -12,6 +12,8 @@ gem 'shotgun'
 
 gem 'twilio-ruby', '~> 4.11.1'
 
+gem 'faker'
+
 gem 'nbayes'
 
 group :test do

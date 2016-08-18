@@ -1,4 +1,12 @@
 get '/' do
+  # tokenize message
+  # tokens = "2140 W Potomac Ave #3".split(/\s+/)
+  # tokens = "I need help".split(/\s+/)
+  # result = nbayes.classify(tokens)
+  # print likely class (SPAM or HAM)
+  # p result.max_class
+  # p result["address"]
+
   erb :temp
 end
 
