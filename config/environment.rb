@@ -8,12 +8,21 @@ require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 # Require gems we care about
 require 'rubygems'
 
+require 'nbayes'
+
 require 'uri'
 require 'pathname'
 
 require 'pg'
 require 'active_record'
 require 'logger'
+require 'faker'
+require 'classifier'
+
+require 'csv'
+
+require 'twilio-ruby'
+
 
 require 'sinatra'
 require "sinatra/reloader" if development?

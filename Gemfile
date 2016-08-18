@@ -15,6 +15,14 @@ gem 'rake'
 
 gem 'shotgun'
 
+gem 'twilio-ruby', '~> 4.11.1'
+
+gem 'faker'
+
+gem 'nbayes'
+
+gem 'classifier'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
