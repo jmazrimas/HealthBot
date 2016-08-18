@@ -12,6 +12,7 @@ require 'uri'
 require 'pathname'
 
 require 'twilio-ruby'
+require 'nbayes'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
