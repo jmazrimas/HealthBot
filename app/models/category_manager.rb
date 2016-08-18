@@ -1,4 +1,4 @@
-class Category
+class CategoryManager
 
   def initialize
     @names = {
