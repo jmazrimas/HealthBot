@@ -1,6 +1,14 @@
 class PubHealth < ActiveRecord::Base
 
   #after greg and joe determine the category of the request...
+  def return_string(category, address)
+    uri = URI(form_query(category, address))
+    string_data = Net::HTTP.get(uri)
+    p string_data
+  end
+
+  # def insert_answers_into_db
+  # end
 
   def get_box_around_address(address)
     google_object = Geocoder.search(address)
@@ -10,7 +18,7 @@ class PubHealth < ActiveRecord::Base
     return box
   end
 
-  def make_query(category, address)
+  def form_query(category, address)
     box_around_target_address = get_box_around_address(address)
     text_file = File.open("api_endpoints.txt")
     last_line = ""
