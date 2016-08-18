@@ -15,6 +15,8 @@ require 'pathname'
 
 require 'faker'
 
+require 'csv'
+
 require 'twilio-ruby'
 
 
