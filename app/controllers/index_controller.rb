@@ -1,7 +1,5 @@
 get '/' do
 
-  p classing_bot.classify("i banged my head")
-
   erb :temp
 end
 

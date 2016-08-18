@@ -25,15 +25,13 @@ helpers do
       classing_bot.train_cooling_centers(query[1])
     end
 
-    classing_bot
   end
 
   def classifier_learn
 
     classing_bot = Classifier::Bayes.new "mental_health", "sti", "wic_clinics", "substance_abuse", "primary_care", "senior_centers", "condom_distribution", "warming_centers", "cooling_centers"
-
     queries = CSV.read('nbayes_queries.csv', headers:true)
-
+    
     queries.each do |row|
       classing_training(row, classing_bot)
     end
