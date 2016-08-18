@@ -14,6 +14,7 @@ require 'uri'
 require 'pathname'
 
 require 'faker'
+require 'classifier'
 
 require 'csv'
 

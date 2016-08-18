@@ -1,13 +1,6 @@
 get '/' do
 
-  tokens = "suicide".split(/\s+/)
-  # tokens = "I need help".split(/\s+/)
-  
-  result = nbayes.classify(tokens)
-
-  p result.max_class
-  p result[result.max_class]
-  p result
+  p classing_bot.classify("i banged my head")
 
   erb :temp
 end

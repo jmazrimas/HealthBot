@@ -16,6 +16,8 @@ gem 'faker'
 
 gem 'nbayes'
 
+gem 'classifier'
+
 group :test do
   gem 'rack-test'
   gem 'rspec'
