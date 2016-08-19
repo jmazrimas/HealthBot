@@ -25,7 +25,7 @@ post '/sms-spoof' do
   if session[:confirmed_category]
     if session[:potential_location]
       @res_back = "You're looking for help with #{session[:confirmed_category]} at #{session[:potential_location]}."
-      return_string(session[:confirmed_category], session[:potential_location])
+      p response_options(session[:confirmed_category], session[:potential_location])
     else
       @res_back = "Couldn't understand that. What is your address or zip code?"
     end
@@ -60,7 +60,7 @@ get '/receive-sms' do
   if session[:confirmed_category]
     if session[:potential_location]
       @res_back = "You're looking for help with #{session[:confirmed_category]} at #{session[:potential_location]}."
-      return_string(session[:confirmed_category], session[:potential_location])
+      p response_options(session[:confirmed_category], session[:potential_location])
     else
       @res_back = "Couldn't understand that. What is your address or zip code?"
     end
