@@ -54,6 +54,11 @@ helpers do
     session[:excluded_catgories].length+1 == CategoryManager.new.names_excluding([]).length
   end
 
+  def session_timeout?
+    session[:start_time] ||= Time.now
+    Time.now - session[:start_time] > 60
+  end
+
   def parse_location(text)
     full_address = text.match(/\d+.+(?=AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY)[A-Z]{2}[, ]+\d{5}(?:-\d{4})?/)
     return full_address[0] if full_address && full_address[0]
