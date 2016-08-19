@@ -44,6 +44,13 @@ helpers do
     @classing_bot ||= classifier_learn
   end
 
+  def parse_location(text)
+    full_address = text.match(/\d+.+(?=AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY)[A-Z]{2}[, ]+\d{5}(?:-\d{4})?/)
+    return full_address[0] if full_address && full_address[0]
+    zip_code = text.match(/\d{5}/)
+    return zip_code[0] if zip_code && zip_code[0]
+  end
+
 end
 
 
