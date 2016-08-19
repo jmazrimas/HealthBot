@@ -17,7 +17,19 @@ post '/sms-spoof' do
 
   from_user = params["message"]
 
-  if !session[:confirmed_category]
+  potential_location = parse_location(from_user)
+
+  if potential_location
+    session[:potential_location] = potential_location
+  end
+
+  if session[:confirmed_category]
+    if session[:potential_location]
+      @res_back = "You're looking for help with #{session[:confirmed_category]} at #{session[:potential_location]}."
+    else
+      @res_back = "Couldn't understand that. What is your address or zip code?"
+    end
+  else
     if excluded_all_categories?
       @res_back = "Sorry, I don't think we can help you :("
     elsif from_user.downcase == "yes"
@@ -30,7 +42,6 @@ post '/sms-spoof' do
     else
       @res_back = get_next_suggestion(from_user)
     end
-  else
   end
 
   erb :sms_spoof
@@ -53,6 +64,11 @@ get '/receive-sms' do
     r.Message msg
   end
   twiml.text
+end
+
+get '/clear-session' do
+  session.each { |k,v| session[k] = nil }
+  redirect '/sms-spoof'
 end
 
 # needs to call pub_health method, receive a string with the place and the address which it returns to the user
