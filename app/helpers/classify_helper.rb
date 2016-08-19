@@ -28,22 +28,31 @@ helpers do
   end
 
   def exclude_category
-    session[:excluded_catgories] = [] if !session[:excluded_catgories]
+    set_excluded
     if session[:last_suggestion]
-      p "exclude session_last: #{session[:last_suggestion]}"
       session[:excluded_catgories] << session[:last_suggestion]
-      p "exclude excluded: #{session[:excluded_catgories]}"
     end
   end
 
   def get_next_suggestion(user_input)
-    exclude_category
+    set_excluded
     categories = CategoryManager.new.names_excluding(session[:excluded_catgories])
     classing_bot = create_class_bot(categories)
-    p "class bot says #{classing_bot.classify(user_input)}"
-    session[:last_suggestion] = classing_bot.classify(user_input)
+    # session[:last_suggestion] = classing_bot.classify(user_input)
+    bot_response = classing_bot.classify(user_input).downcase
+    session[:last_suggestion] = bot_response.gsub(/\s+/,"_")
+    "Are you looking for information on #{bot_response}? Tell us 'yes' when we've got it right."
+
   end
 
+  def set_excluded
+    session[:excluded_catgories] = [] if !session[:excluded_catgories]
+  end
+
+  def excluded_all_categories?
+    session[:excluded_catgories] = [] if !session[:excluded_catgories]
+    session[:excluded_catgories].length+1 == CategoryManager.new.names_excluding([]).length
+  end
 
 end
 

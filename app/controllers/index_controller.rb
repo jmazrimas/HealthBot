@@ -18,25 +18,17 @@ post '/sms-spoof' do
   from_user = params["message"]
 
   if !session[:confirmed_category]
-    if from_user.downcase == "yes"
+    if excluded_all_categories?
+      @res_back = "Sorry, I don't think we can help you :("
+    elsif from_user.downcase == "yes"
       confirm_category
       session[:last_suggestion] = nil
       @res_back = "Great! We'll get you some info about #{session[:confirmed_category].gsub("_"," ")}. What is your location?"
     elsif from_user.downcase == "no"
-      # categories = CategoryManager.new.names_excluding(session[:excluded_catgories])
-      # classing_bot = create_class_bot(categories)
-      # bot_category = classing_bot.classify(from_user)
-      bot_category = get_next_suggestion(from_user).downcase
-      session[:last_suggestion] = bot_category.gsub(/\s+/,"_")
-      @res_back = "Are you looking for information on #{bot_category}? Tell us 'yes' when we've got it right."
+      exclude_category
+      @res_back = get_next_suggestion(from_user)
     else
-      # categories = CategoryManager.new.names_excluding([])
-      # classing_bot = create_class_bot(categories)
-      # bot_category = classing_bot.classify(from_user)
-      bot_category = get_next_suggestion(from_user).downcase
-      session[:last_suggestion] = bot_category.gsub(/\s+/,"_")
-      # session[:last_suggestion] = bot_category
-      @res_back = "Are you looking for information on #{bot_category}? Tell us 'yes' when we've got it right."
+      @res_back = get_next_suggestion(from_user)
     end
   else
   end
