@@ -59,6 +59,10 @@ end
 
 get '/receive-sms' do
 
+  if session_timeout?
+    session.clear
+  end
+
   from_user = params["Body"]
 
   potential_location = parse_location(from_user)
@@ -86,13 +90,17 @@ get '/receive-sms' do
       confirm_category
       session[:last_suggestion] = nil
       @res_back = "Great! We'll get you some info about #{session[:confirmed_category].gsub("_"," ")}. "
-      @res_back += (potential_location != nil ? "Is your location #{potential_location}?" : "What is your location?")
+      @res_back += (session[:potential_location] != nil ? "Is your location #{session[:potential_location]}?" : "What is your location?")
     elsif from_user.downcase == "no" && session[:last_suggestion]
       exclude_category
       @res_back = get_next_suggestion(from_user)
     else
       @res_back = get_next_suggestion(from_user)
     end
+  end
+
+  if session[:confirmed_category] && session[:confirmed_location]
+    @res_back = "we're saved!!!!!!"
   end
 
   twiml = Twilio::TwiML::Response.new do |r|
