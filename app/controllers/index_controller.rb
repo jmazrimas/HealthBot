@@ -89,7 +89,7 @@ get '/receive-sms' do
   end
 
   twiml = Twilio::TwiML::Response.new do |r|
-    r.Message "hello to you!"
+    r.Message @res_back
   end
   twiml.text
 end
