@@ -19,22 +19,23 @@ post '/sms-spoof' do
 
   if !session[:confirmed_category]
     if from_user.downcase == "yes"
-      session[:confirmed_category] = session[:last_suggestion]
+      confirm_category
       session[:last_suggestion] = nil
-      @res_back = "Great! We'll get you some info about #{session[:confirmed_category]}. What is your location?"
+      @res_back = "Great! We'll get you some info about #{session[:confirmed_category].gsub("_"," ")}. What is your location?"
     elsif from_user.downcase == "no"
-      session[:excluded_catgories] = [] if !session[:excluded_catgories]
-      session[:excluded_catgories] << session[:last_suggestion]
-      categories = CategoryManager.new.names_excluding(session[:excluded_catgories])
-      classing_bot = create_class_bot(categories)
-      bot_category = classing_bot.classify(from_user)
-      session[:last_suggestion] = bot_category.downcase.gsub!(/\s+/,"_")
+      # categories = CategoryManager.new.names_excluding(session[:excluded_catgories])
+      # classing_bot = create_class_bot(categories)
+      # bot_category = classing_bot.classify(from_user)
+      bot_category = get_next_suggestion(from_user).downcase
+      session[:last_suggestion] = bot_category.gsub(/\s+/,"_")
       @res_back = "Are you looking for information on #{bot_category}? Tell us 'yes' when we've got it right."
     else
-      categories = CategoryManager.new.names_excluding([])
-      classing_bot = create_class_bot(categories)
-      bot_category = classing_bot.classify(from_user)
-      session[:last_suggestion] = bot_category
+      # categories = CategoryManager.new.names_excluding([])
+      # classing_bot = create_class_bot(categories)
+      # bot_category = classing_bot.classify(from_user)
+      bot_category = get_next_suggestion(from_user).downcase
+      session[:last_suggestion] = bot_category.gsub(/\s+/,"_")
+      # session[:last_suggestion] = bot_category
       @res_back = "Are you looking for information on #{bot_category}? Tell us 'yes' when we've got it right."
     end
   else

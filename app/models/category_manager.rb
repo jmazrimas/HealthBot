@@ -3,7 +3,7 @@ class CategoryManager
   def initialize
     @names = {
     "1" => "mental_health", 
-    "2" => "sti", 
+    "2" => "sexually_transmitted_infections", 
     "3" => "wic_clinics", 
     "4" => "substance_abuse", 
     "5" => "primary_care", 
