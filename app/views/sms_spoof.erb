@@ -1,0 +1,7 @@
+
+<p>Response: <%= @res_back if @res_back %><p>
+
+<form action="/sms-spoof" method="POST">
+	<input type="text" placeholder="sms query" name="message">
+	<input type="submit" value="send">
+</form>

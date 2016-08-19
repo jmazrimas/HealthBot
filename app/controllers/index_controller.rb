@@ -8,6 +8,21 @@ get '/' do
   erb :temp
 end
 
+get '/sms-spoof' do
+
+  erb :sms_spoof
+end
+
+post '/sms-spoof' do
+  categories = CategoryManager.new.names_excluding([])
+
+  classing_bot = create_class_bot(categories)
+
+  @res_back = classing_bot.classify(params["message"])
+
+  erb :sms_spoof
+end
+
 get '/receive-sms' do
 
   # exclude = (session[:exclude_categories] ? session[:exclude_categories] : [])
