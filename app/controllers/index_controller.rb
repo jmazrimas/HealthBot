@@ -59,6 +59,8 @@ get '/receive-sms' do
   # response = classing_bot.classify(body)
   # msg = "Were you looking for info on #{response}?"
 
+  from_user = params["Body"]
+
   potential_location = parse_location(from_user)
 
   if potential_location
