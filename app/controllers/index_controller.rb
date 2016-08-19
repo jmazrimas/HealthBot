@@ -100,7 +100,9 @@ get '/receive-sms' do
   end
 
   if session[:confirmed_category] && session[:confirmed_location]
-    @res_back = "we're saved!!!!!!"
+    res_back = response_options(session[:confirmed_category],session[:confirmed_location])
+    @res_back = "You're out of luck."
+    @res_back = res_back[0] if res_back.length > 0
   end
 
   twiml = Twilio::TwiML::Response.new do |r|
