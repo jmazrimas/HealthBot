@@ -1,17 +1,16 @@
 #after greg and joe determine the category of the request...
 def response_options(category, address)
   json_response = return_collection(category, address)
-  p json_response
   thing = json_response.map {|response| "There's a #{response["site_type"]} called #{response["site_name"]} at #{response["address"]} open #{response["hours_of_operation"]}"}
-  p thing
   thing
+end
+
+def order_responses(json_response, target_address)
 end
 
 # calls formquery, called by response options
 def return_collection(category, address)
   uri = URI(form_query(category, address))
-  p "URI"
-  p uri
   string_data = Net::HTTP.get(uri)
   json_response = JSON.parse(string_data)
   json_response
@@ -19,6 +18,7 @@ end
 
 # calls getboxaround, called by return collection
 def form_query(category, address)
+  google_object = Geocoder.search(address)[0].geometry["location"].values
   box_around_target_address = get_box_around_address(address)
   api_call = CategoryManager.new.apis[category] + "?$where=within_box(location,#{box_around_target_address[0]},#{box_around_target_address[1]},#{box_around_target_address[2]},#{box_around_target_address[3]})"
   api_call
