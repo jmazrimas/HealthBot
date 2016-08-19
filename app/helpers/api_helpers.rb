@@ -3,6 +3,7 @@
 def response_options(category, address)
   json_response = return_collection(category, address)
   # ordered = order_json_responses(json_response, address)
+  p json_response
   thing = json_response.map {|response| "There's a #{response["site_type"] || response["clinic_type"]} called #{response["site_name"]} at #{response["address"] || response["street_address"]} open #{response["hours_of_operation"]}"}
   thing
 end
