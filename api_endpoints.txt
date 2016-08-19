@@ -1,7 +1,7 @@
 mental_health
 https://data.cityofchicago.org/resource/t57k-za2y.json
 
-sti
+sexually_transmitted_infections
 https://data.cityofchicago.org/resource/t57k-za2y.json
 
 wic_clinics
