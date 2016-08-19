@@ -51,7 +51,9 @@ post '/sms-spoof' do
   end
 
   if session[:confirmed_category] && session[:confirmed_location]
-    @res_back = "we're saved!!!!!!"
+    res_back = response_options(session[:confirmed_category],session[:confirmed_location])
+    @res_back = "You're out of luck."
+    @res_back = res_back[0] if res_back.length > 0
   end
 
   erb :sms_spoof
@@ -60,7 +62,7 @@ end
 get '/receive-sms' do
 
   if session_timeout?
-    session.clear
+    session.each { |k,v| session[k] = nil }
   end
 
   from_user = params["Body"]
