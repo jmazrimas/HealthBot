@@ -58,7 +58,7 @@ helpers do
     prev_session = session[:start_time]
     session[:start_time] = Time.now
     return false if !prev_session
-    Time.now - prev_session > 30
+    Time.now - prev_session > 120
   end
 
   def parse_location(text)
